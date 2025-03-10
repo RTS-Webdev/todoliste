@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex justify-center items-center bg-gray-50 p-8">
       <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Noter</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Todoliste</h1>
         
         {data && Object.keys(data).length > 0 ? (
           <ul className="space-y-4">
@@ -57,13 +57,13 @@ export default function Home() {
             ))}
           </ul>
         ) : (
-          <p className="text-center text-gray-500 text-lg py-12">Ingen noter fundet</p>
+          <p className="text-center text-gray-500 text-lg py-12">Ingen punkter fundet</p>
         )}
 
         <div className="mt-8">
           <input
             type="text"
-            placeholder="Skriv en ny note..."
+            placeholder="Skriv et nyt punkt..."
             className="w-full px-6 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-black"
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
