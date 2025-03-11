@@ -191,18 +191,26 @@ export default function Home() {
                               };
                             });
                           }}
-                          className="px-2 py-1 rounded border border-gray-300 bg-white text-gray-900 font-medium"
+                          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                            priority === 2 ? 'bg-red-100 text-red-800 border-red-200' :
+                            priority === 1 ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                            'bg-green-100 text-green-800 border-green-200'
+                          } border-2 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                            priority === 2 ? 'focus:ring-red-500' :
+                            priority === 1 ? 'focus:ring-yellow-500' :
+                            'focus:ring-green-500'
+                          }`}
                         >
-                          <option value="0" className="bg-green-100 text-green-800">Lav</option>
-                          <option value="1" className="bg-yellow-100 text-yellow-800">Medium</option>
-                          <option value="2" className="bg-red-100 text-red-800">Høj</option>
+                          <option value="0" className="bg-green-50 text-green-800">Lav</option>
+                          <option value="1" className="bg-yellow-50 text-yellow-800">Medium</option>
+                          <option value="2" className="bg-red-50 text-red-800">Høj</option>
                         </motion.select>
                       </div>
                       <p className="text-base text-gray-600 mt-2">{timestamp}</p>
                     </div>
                   </div>
                   <motion.button
-                    whileHover={{ scale: 1.1, backgroundColor: "rgb(254 242 242)" }}
+                    whileHover={{ scale: 1.1, backgroundColor: completed ? "rgb(220 252 231)" : "rgb(254 242 242)" }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => {
                       setData((prev) => {
@@ -217,12 +225,18 @@ export default function Home() {
                         return newData;
                       });
                     }}
-                    className="ml-6 p-3 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                    className={`ml-6 p-3 ${completed ? 'text-green-500 hover:text-green-600 hover:bg-green-50' : 'text-gray-400 hover:text-red-500 hover:bg-red-50'} rounded-full transition-colors`}
                     aria-label="Slet note"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    {completed ? (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    )}
                   </motion.button>
                 </motion.li>
               ))}
